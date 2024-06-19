@@ -1,11 +1,21 @@
-
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
 
 const About = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: false, // Animasi hanya dipicu sekali
+    threshold: 0.7 // Animasi akan dimulai ketika 50% elemen terlihat
+  });
+
   return (
-    <div
+    <motion.div
       id="about"
       className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-[15%]"
+      ref={ref} // Referensi dari useInView
+      initial={{ opacity: 0, y: 50 }} // Awal animasi
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }} // Animasi saat masuk
+      transition={{ duration: 1.1 }} // Durasi animasi
     >
       <div className="mx-10 font-spacesemibold text-[40px] md:text-[80px] leading-tight text-center md:text-left">
         <p className="text-[#949686] font-spacesemibold text-lg">Introduction</p>
@@ -17,7 +27,7 @@ const About = () => {
       <div className="flex justify-center md:justify-end items-center">
         <Image src="/stack.png" alt="Tech Stack Image" width={500} height={500} className="md:w-auto md:h-auto object-cover" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

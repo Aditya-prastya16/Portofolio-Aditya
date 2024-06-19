@@ -5,6 +5,8 @@ import Hero from './components/hero/page'
 import About from './components/about/page'
 import Project from './components/project/page'
 import Footer from './components/footer/page'
+import Contact from './components/contact/page'
+import ScrollToTopButton from './components/ScrollButton/page'
 
 const page = () => {
   return (
@@ -20,10 +22,15 @@ const page = () => {
         <section id='Project'>
             <Project />
         </section>
+        <section id='Contact'>
+          <Contact />
+        </section>
       </article>
-      <footer id='Contact'>
+      
+      <footer >
         <Footer />
       </footer>
+      <ScrollToTopButton />
     </>
   )
 }

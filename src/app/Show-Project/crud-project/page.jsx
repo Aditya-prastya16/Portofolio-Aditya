@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ReturnPage } from '@/app/components/return/page';
 
 const Page = () => {
   const [mainImage, setMainImage] = useState('/nextcrud.png');
@@ -13,8 +12,9 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white p-6">
-      <ReturnPage />
-      <div className="md:flex md:space-x-8">
+    <Link href="/view_project" className="flex items-center text-blue-500 mb-4">
+    <span className="mr-2">&lt;&lt;</span> Return To Home Page
+  </Link>      <div className="md:flex md:space-x-8">
         <div className="md:w-1/2">
           <h1 className="text-3xl font-bold mb-4">Next CRUD</h1>
           {/* card 1 */}
