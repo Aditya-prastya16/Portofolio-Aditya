@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -16,7 +17,7 @@ const Contact = () => {
       transition={{ duration: 1.5 }}
       className="mt-10 mx-auto px-4"
     >
-      <div className="mt-10 mx-auto px-4">
+      <div className="mb-10  mx-auto px-4">
         <h2 className="text-3xl font-spacebold text-center text-white mb-4">Contact Me</h2>
         <div className="w-full max-w-md mx-auto p-4 bg-gray-200 rounded-lg shadow-md">
           <form action="https://formspree.io/f/xeqynrzv" method="POST" className="flex flex-col space-y-4">

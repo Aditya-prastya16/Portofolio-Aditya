@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -7,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 const Project = () => {
   const { ref, inView } = useInView({
     triggerOnce: false, // Animasi hanya dipicu sekali
-    threshold: 0.7, // Animasi akan dimulai ketika 50% elemen terlihat
+    threshold: 0.3, // Animasi akan dimulai ketika 50% elemen terlihat
   });
 
   return (
@@ -19,16 +20,16 @@ const Project = () => {
       className="text-white p-8 font-spacesemibold mt-[5%]"
     >
       <div className="justify-center content-center mb-10 text-center">
-        <p className="text-3xl font-spacebold text-[50px] mx-auto">
+        <p className="text-3xl md:text-5xl font-spacebold  mx-auto">
           Latest Project
         </p>
       </div>
 
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-xl font-spacesemibold">My Latest Project :</h1>
+        <h1 className="text-sm md:text-xl font-spacesemibold">My Latest Project :</h1>
         <Link href="/view_project">
           <motion.p
-            className="text-blue-400 hover:text-blue-300 hover:text-bold "
+            className="text-blue-400 text-xs md:text-base hover:text-blue-300 hover:text-bold "
             whileHover={{ scale: 1.1 }} // Increase scale on hover
           >
             See all my projects →
@@ -36,7 +37,7 @@ const Project = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         <motion.div
           className="bg-transparent shadow-lg rounded-lg overflow-hidden flex justify-center items-center"
           whileHover={{ scale: 1.05 }} // Efek scaling saat hover

@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const Page = () => {
   const [mainImage, setMainImage] = useState('/animelist-project.png');
@@ -9,13 +11,38 @@ const Page = () => {
   const handleThumbnailClick = (src) => {
     setMainImage(src);
   };
+  const { ref: mainImageRef, inView: mainImageInView } = useInView({
+    triggerOnce: true,
+  });
+
+  const { ref: textRef, inView: textInView } = useInView({
+    triggerOnce: true,
+  });
+
+  const imageVariants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    hidden: { opacity: 0, y: 20 },
+  };
+
+  const textVariants = {
+    visible: { opacity: 1, transition: { duration: 2, delay: 0.4 } },
+    hidden: { opacity: 0 },
+  };
+
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white p-6">
     <Link href="/view_project" className="flex items-center text-blue-500 mb-4">
     <span className="mr-2">&lt;&lt;</span> Return To Home Page
-  </Link>      <div className="md:flex md:space-x-8">
-        <div className="md:w-1/2">
+  </Link>      
+  <div className="md:flex md:space-x-8">
+        <motion.div 
+        ref={mainImageRef}
+        initial="hidden"
+        animate={mainImageInView ? "visible" : "hidden"}
+        variants={imageVariants}
+        className="md:w-1/2"
+        >
           <h1 className="text-3xl font-bold mb-4">Dinimelist</h1>
           {/* card 1 */}
           <div className="relative">
@@ -32,7 +59,7 @@ const Page = () => {
               alt="Thumbnail 1"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/dinime-card1.png')}
             />
             <Image
@@ -40,7 +67,7 @@ const Page = () => {
               alt="Thumbnail 2"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/dinime-card2.png')}
             />
             <Image
@@ -48,22 +75,27 @@ const Page = () => {
               alt="Thumbnail 3"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/dinime-card3.png')}
             />
-              <Image
+            <Image
               src="/dinime-card4.png"
-              alt="Thumbnail 3"
+              alt="Thumbnail 4"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/dinime-card4.png')}
             />
-
           </div>
-        </div>
-        <div className="md:w-1/2 mt-8 md:mt-0">
-          <h2 className="text-2xl font-bold mb-4">CRUD Website</h2>
+        </motion.div>
+        <motion.div 
+        ref={textRef}
+        initial="hidden"
+        animate={textInView ? "visible" : "hidden"}
+        variants={textVariants}
+        className="md:w-1/2 mt-8 md:mt-0"
+        >
+          <h2 className="text-2xl font-bold mb-4">Dinimelist Website</h2>
           <p className="mb-5">
           Our AnimeList website leverages the Jikan API to deliver an exceptional user experience for anime enthusiasts. Users can easily search for new or popular anime titles and add them to their personal collection, making it simple to organize and track their favorite shows. Additionally, the platform allows users to add comments to each anime title, fostering a community of discussion and sharing among fans. The website also features a convenient login system using GitHub, ensuring secure and seamless access to user accounts. With these capabilities, AnimeList not only makes finding and cataloging anime straightforward and enjoyable but also enhances user interaction and engagement by integrating advanced search functionalities, personalized collections, and social features.
           </p>
@@ -77,11 +109,9 @@ const Page = () => {
           <div className="flex items-center space-x-2">
             <Link target='_blank' href="https://github.com/Aditya-prastya16/AnimelistApp">
               <Image src="/mdi_github.png" alt="Vercel Logo" width={20} height={20} className="w-5 h-5" />
-            </Link>
-
-            
+            </Link> 
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

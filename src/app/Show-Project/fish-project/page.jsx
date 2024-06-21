@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const Page = () => {
   const [mainImage, setMainImage] = useState('/fishshop-project.png');
@@ -9,13 +11,38 @@ const Page = () => {
   const handleThumbnailClick = (src) => {
     setMainImage(src);
   };
+  const { ref: mainImageRef, inView: mainImageInView } = useInView({
+    triggerOnce: true,
+  });
+
+  const { ref: textRef, inView: textInView } = useInView({
+    triggerOnce: true,
+  });
+
+  const imageVariants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    hidden: { opacity: 0, y: 20 },
+  };
+
+  const textVariants = {
+    visible: { opacity: 1, transition: { duration: 2, delay: 0.4 } },
+    hidden: { opacity: 0 },
+  };
+
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white p-6">
     <Link href="/view_project" className="flex items-center text-blue-500 mb-4">
     <span className="mr-2">&lt;&lt;</span> Return To Home Page
-  </Link>      <div className="md:flex md:space-x-8">
-        <div className="md:w-1/2">
+  </Link>      
+  <div className="md:flex md:space-x-8">
+  <motion.div 
+        ref={mainImageRef}
+        initial="hidden"
+        animate={mainImageInView ? "visible" : "hidden"}
+        variants={imageVariants}
+        className="md:w-1/2"
+        >
           <h1 className="text-3xl font-bold mb-4">Fish Shop</h1>
           {/* card 1 */}
           <div className="relative">
@@ -32,7 +59,7 @@ const Page = () => {
               alt="Thumbnail 1"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/fish-card1.png')}
             />
             <Image
@@ -40,7 +67,7 @@ const Page = () => {
               alt="Thumbnail 2"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/fish-card2.png')}
             />
             <Image
@@ -48,21 +75,26 @@ const Page = () => {
               alt="Thumbnail 3"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/fish-card3.png')}
             />
-                        <Image
+            <Image
               src="/fish-card4.png"
-              alt="Thumbnail 3"
+              alt="Thumbnail 4"
               width={200}
               height={100}
-              className="w-1/4 rounded-lg cursor-pointer"
+              className="w-1/4 rounded-lg cursor-pointer hover:scale-110 transition duration-300 ease-in-out" // Added hover effect
               onClick={() => handleThumbnailClick('/fish-card4.png')}
             />
-           
           </div>
-        </div>
-        <div className="md:w-1/2 mt-8 md:mt-0">
+        </motion.div>
+        <motion.div 
+        ref={textRef}
+        initial="hidden"
+        animate={textInView ? "visible" : "hidden"}
+        variants={textVariants}
+        className="md:w-1/2 mt-8 md:mt-0"
+        >
           <h2 className="text-2xl font-bold mb-4">Fish Shop Website</h2>
           <p className="mb-5">
           The Fish Shop website is a platform developed using PHP and CSS to facilitate the online sale of various fish species. PHP is employed for backend functionalities such as product management, user authentication, and order processing, ensuring a dynamic and interactive experience. CSS is utilized to create a visually appealing and responsive design, enhancing user experience across different devices. The website allows users to browse a catalog of fish, add items to their cart, and complete purchases seamlessly, providing an efficient and user-friendly online shopping experience for fish enthusiasts.
@@ -81,7 +113,7 @@ const Page = () => {
 
             
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

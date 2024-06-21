@@ -4,34 +4,69 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+
 const Page = () => {
-  const { ref, inView } = useInView({
+  const { ref: linkRef, inView: linkInView } = useInView({
     triggerOnce: true,
   });
 
-  const variants = {
+  const { ref: headingRef, inView: headingInView } = useInView({
+    triggerOnce: true,
+  });
+
+  const { ref: projectRef, inView: projectInView } = useInView({
+    triggerOnce: true,
+  });
+
+  const linkVariants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+    hidden: { opacity: 0, y: -20 },
+  };
+
+  const headingVariants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 } },
+    hidden: { opacity: 0, y: -20 },
+  };
+
+  const projectVariants = {
     visible: { scale: 1, transition: { duration: 0.4 } },
     hidden: { scale: 0.9 },
   };
+  
 
   return (
     <>
       <div className="bg-zinc-900 text-white min-h-screen p-4">
-        <Link
-          href="/"
-          className="text-blue-500 hover:text-zinc-200 mb-4 inline-block"
+        <motion.div
+          ref={linkRef}
+          initial="hidden"
+          animate={linkInView ? "visible" : "hidden"}
+          variants={linkVariants}
         >
-          &larr; Return To Home Page
-        </Link>
-        <h2 className="text-3xl font-bold mb-8">Latest Project</h2>
+          <Link
+            href="/"
+            className="text-blue-500 hover:text-zinc-200 mb-4 inline-block"
+          >
+            &larr; Return To Home Page
+          </Link>
+        </motion.div>
+        <motion.h2
+          ref={headingRef}
+          initial="hidden"
+          animate={headingInView ? "visible" : "hidden"}
+          variants={headingVariants}
+          className="text-3xl font-bold mb-8"
+        >
+          Latest Project
+        </motion.h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Link href="./Show-Project/movie-project">
             <motion.div
-              className="bg-zinc-800 rounded-lg overflow-hidden"
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/movie-project.png"
@@ -50,10 +85,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/crud-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/nextcrud.png"
@@ -73,10 +109,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/dinime-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/animelist-project.png"
@@ -96,10 +133,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/fish-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/fishshop-project.png"
@@ -118,10 +156,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/laundry-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/laundry-project.png"
@@ -140,10 +179,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/singgoadmin-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/singgo-project.png"
@@ -165,10 +205,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/singgolanding-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/singgolanding-project.png"
@@ -190,10 +231,11 @@ const Page = () => {
           </Link>
           <Link href="./Show-Project/apotek-project">
             <motion.div
-              ref={ref}
+              className="bg-zinc-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-blue-500"
+              ref={projectRef}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
+              animate={projectInView ? "visible" : "hidden"}
+              variants={projectVariants}
             >
               <Image
                 src="/apotek-project.png"
