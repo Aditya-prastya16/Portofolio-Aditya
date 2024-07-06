@@ -28,7 +28,7 @@ const Hero = () => {
           <div className="flex flex-row space-x-10 mt-[5%]">
             <div className="ml-2 flex">
               <Link
-                href="https://drive.google.com/file/d/1Skq8wf9LxPr-adgKNFm1MQQgeT_PJgkF/view"
+                href="https://drive.google.com/file/d/1YxY6Sab9ePBJgdkcnC6E0bm_FD4G3PTb/view?usp=sharing"
                 className="flex items-center"
                 target="_blank"
               >
