@@ -24,7 +24,7 @@ const About = () => {
         <p className="font-spacesemibold text-2xl md:text-[42px] text-white">Hello !, I&apos;m Aditya Prastya, </p>
         <p className="font-spacesemibold text-2xl md:text-[42px] text-white underline">Web Programmer</p>
         <p className="font-spacesemibold text-2xl md:text-[42px] text-white">Based On Indonesia Bali </p>
-        <p className="text-[#949686] text-lg md:text-2xl my-2">I’m Junior Full-Stack Web Programmer, Lived On Denpasar City, Bali. As a Full-stack Web Programmer, Make me good at managing all components of a web application, from the User Interface to the Server and Database.</p>
+        <p className="text-[#949686] text-lg md:text-2xl my-2">I’m Junior Front-End Web Programmer, Lived On Denpasar City, Bali. As a Front-End Web Programmer, Make me good at managing all components of a web application, from the User Interface to the User Experience.</p>
       </div>
       <div className="flex justify-center md:justify-end items-center">
         <Link href="https://github.com/Aditya-prastya16" target='_blank'>        
